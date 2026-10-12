@@ -1,0 +1,72 @@
+[
+  {
+    "id": "rev-1791788005267",
+    "name": "Elena Rostova",
+    "country": "Switzerland",
+    "safari": "Amboseli & Kilimanjaro Views",
+    "rating": 5,
+    "date": "2026-10-12",
+    "comment": "The views of Kilimanjaro at sunrise with the elephant herds were breathtaking. Seamless experience!",
+    "avatar": "ER"
+  },
+  {
+    "id": "1",
+    "name": "Sarah Mitchell",
+    "country": "United States",
+    "safari": "Masai Mara Adventure",
+    "rating": 5,
+    "date": "2025-11-15",
+    "comment": "Absolutely life-changing experience! Our guide James knew exactly where to find the big cats. We saw all of the Big Five within the first two days, and the hot air balloon sunrise was pure heaven.",
+    "avatar": "SM"
+  },
+  {
+    "id": "2",
+    "name": "Hans Weber",
+    "country": "Germany",
+    "safari": "Amboseli & Kilimanjaro Views",
+    "rating": 5,
+    "date": "2025-10-22",
+    "comment": "Watching elephants with Kilimanjaro in the background is something I will never forget. The tented camp was surprisingly luxurious, food was 5-star, and the guides treated us like royalty.",
+    "avatar": "HW"
+  },
+  {
+    "id": "3",
+    "name": "Aiko Tanaka",
+    "country": "Japan",
+    "safari": "Samburu Special Five",
+    "rating": 5,
+    "date": "2025-09-10",
+    "comment": "Samburu was unlike any safari I have done before. The landscape is raw and wild, and seeing the Grevy zebras and reticulated giraffes up close was a dream come true. Highly recommended!",
+    "avatar": "AT"
+  },
+  {
+    "id": "4",
+    "name": "James Ochieng",
+    "country": "Kenya",
+    "safari": "Coast & Safari Combo",
+    "rating": 5,
+    "date": "2025-08-05",
+    "comment": "A perfect blend of wildlife in Tsavo and beach relaxation in Diani. The transition was smooth, 4x4 cruiser was comfortable with charging plugs, and the marine park dolphin snorkel was breathtaking.",
+    "avatar": "JO"
+  },
+  {
+    "id": "5",
+    "name": "Maria Santos",
+    "country": "Brazil",
+    "safari": "Rift Valley Lakes & Nakuru",
+    "rating": 5,
+    "date": "2025-12-01",
+    "comment": "The flamingos at Lake Nakuru and the white rhinos were breathtaking. Our guide was passionate and informative. The whole trip exceeded our expectations. Asante sana UKe!",
+    "avatar": "MS"
+  },
+  {
+    "id": "6",
+    "name": "Chloe & Liam Davies",
+    "country": "United Kingdom",
+    "safari": "Masai Mara Adventure",
+    "rating": 5,
+    "date": "2026-01-14",
+    "comment": "Booked this for our honeymoon and it surpassed every expectation. The champagne breakfast in the Mara after seeing three cheetahs hunting was surreal. Flawless hospitality from start to finish.",
+    "avatar": "CD"
+  }
+]

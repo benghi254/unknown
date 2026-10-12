@@ -17,7 +17,7 @@ export async function generateMetadata({
   const safari = safaris.find((s) => s.id === id);
   if (!safari) return { title: "Safari Not Found" };
   return {
-    title: `${safari.title} | Unknown Kenya`,
+    title: `${safari.title} | Unknown Kenya Safaris`,
     description: safari.description,
   };
 }
@@ -35,41 +35,87 @@ export default async function SafariDetailPage({
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative bg-earth text-white py-16 sm:py-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-earth via-earth-light/20 to-safari-green/10" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with High-Res Web Image */}
+      <section className="relative min-h-[50vh] flex flex-col justify-end bg-stone-950 text-white overflow-hidden py-20">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={safari.image}
+            alt={safari.title}
+            className="w-full h-full object-cover opacity-50 scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-black/30" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <Link
             href="/safaris"
-            className="text-accent hover:text-accent-light text-sm font-medium mb-4 inline-block"
+            className="text-amber-300 hover:text-white text-xs font-semibold mb-4 inline-flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 transition-colors"
           >
-            &larr; All Safaris
+            &larr; Back to All Safaris
           </Link>
-          <span className="inline-block bg-accent/20 text-accent text-xs font-semibold px-3 py-1 rounded-full mb-3">
-            {safari.duration}
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+          <div className="flex flex-wrap items-center gap-2 mt-2 mb-3">
+            <span className="bg-accent text-stone-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              {safari.duration}
+            </span>
+            <span className="bg-white/20 backdrop-blur-md text-white text-xs font-medium px-3 py-1 rounded-full">
+              {safari.lodgingType}
+            </span>
+            {safari.badge && (
+              <span className="bg-amber-400 text-stone-950 text-xs font-bold px-3 py-1 rounded-full">
+                ★ {safari.badge}
+              </span>
+            )}
+          </div>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-md">
             {safari.title}
           </h1>
-          <p className="mt-4 text-white/70 text-lg max-w-3xl">
+          <p className="mt-4 text-stone-200 text-base sm:text-lg max-w-3xl leading-relaxed drop-shadow">
             {safari.description}
           </p>
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 bg-background">
+      {/* Main Details and Booking Sidebar */}
+      <section className="py-14 sm:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-8 space-y-8">
+              {/* Photo Gallery Grid from the Web */}
+              {safari.gallery && safari.gallery.length > 0 && (
+                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-sand/80 shadow-sm">
+                  <h2 className="text-xl font-bold text-earth mb-4">
+                    Photo Highlights & Lodging
+                  </h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                    {safari.gallery.map((imgUrl, i) => (
+                      <div
+                        key={i}
+                        className="relative h-36 sm:h-44 rounded-2xl overflow-hidden group shadow-sm"
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`${safari.title} moment ${i + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Highlights */}
-              <div className="bg-white rounded-xl p-6 sm:p-8 border border-sand">
-                <h2 className="text-xl font-bold text-earth mb-4">
-                  Safari Highlights
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-sand/80 shadow-sm">
+                <h2 className="text-xl font-bold text-earth mb-4 flex items-center gap-2">
+                  <span>🦁</span> Safari Highlights
                 </h2>
-                <ul className="space-y-3">
-                  {safari.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {safari.highlights.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 p-3 rounded-xl bg-sand/30 border border-sand/50"
+                    >
                       <svg
                         className="w-5 h-5 text-accent mt-0.5 shrink-0"
                         fill="currentColor"
@@ -81,7 +127,7 @@ export default async function SafariDetailPage({
                           clipRule="evenodd"
                         />
                       </svg>
-                      <span className="text-earth-light/80 text-sm">
+                      <span className="text-earth text-sm font-medium">
                         {item}
                       </span>
                     </li>
@@ -90,21 +136,17 @@ export default async function SafariDetailPage({
               </div>
 
               {/* What's Included */}
-              <div className="bg-white rounded-xl p-6 sm:p-8 border border-sand">
-                <h2 className="text-xl font-bold text-earth mb-4">
-                  What&apos;s Included
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-sand/80 shadow-sm">
+                <h2 className="text-xl font-bold text-earth mb-4 flex items-center gap-2">
+                  <span>✨</span> What&apos;s Included In Your Package
                 </h2>
                 <ul className="space-y-3">
-                  {safari.included.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <svg
-                        className="w-5 h-5 text-safari-green mt-0.5 shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <span className="text-earth-light/80 text-sm">
+                  {safari.included.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm">
+                      <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-xs font-bold">
+                        ✓
+                      </span>
+                      <span className="text-earth-light/80 leading-relaxed">
                         {item}
                       </span>
                     </li>
@@ -114,23 +156,35 @@ export default async function SafariDetailPage({
 
               {/* Parks visited */}
               {safariParks.length > 0 && (
-                <div className="bg-white rounded-xl p-6 sm:p-8 border border-sand">
+                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-sand/80 shadow-sm">
                   <h2 className="text-xl font-bold text-earth mb-4">
-                    Parks You&apos;ll Visit
+                    Parks & Reserves Visited
                   </h2>
                   <div className="space-y-4">
                     {safariParks.map((park) => (
                       <Link
                         key={park.id}
                         href={`/parks/${park.id}`}
-                        className="block p-4 rounded-lg border border-sand hover:border-accent/30 transition-colors"
+                        className="flex flex-col sm:flex-row gap-4 p-4 rounded-2xl border border-sand hover:border-accent/40 transition-all hover:shadow-md group"
                       >
-                        <h3 className="font-semibold text-earth hover:text-accent transition-colors">
-                          {park.name}
-                        </h3>
-                        <p className="text-sm text-earth-light/60 mt-1">
-                          {park.highlights}
-                        </p>
+                        <div className="w-full sm:w-36 h-24 rounded-xl overflow-hidden shrink-0">
+                          <img
+                            src={park.image}
+                            alt={park.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-earth group-hover:text-accent transition-colors">
+                            {park.name}
+                          </h3>
+                          <p className="text-xs text-earth-light/60 mt-1 line-clamp-2">
+                            {park.highlights}
+                          </p>
+                          <span className="text-xs text-accent font-semibold mt-2 inline-block">
+                            View Park Details &rarr;
+                          </span>
+                        </div>
                       </Link>
                     ))}
                   </div>
@@ -138,43 +192,61 @@ export default async function SafariDetailPage({
               )}
             </div>
 
-            {/* Booking Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24 bg-white rounded-xl p-6 sm:p-8 border border-sand shadow-sm">
-                <div className="text-center mb-6">
-                  <span className="text-xs text-earth-light/50 uppercase tracking-wide">
-                    Starting from
+            {/* Sticky Booking Sidebar */}
+            <div className="lg:col-span-4">
+              <div className="sticky top-24 bg-white rounded-3xl p-6 sm:p-8 border border-sand/80 shadow-xl">
+                <div className="text-center pb-6 border-b border-sand/60">
+                  <span className="text-xs text-earth-light/60 uppercase tracking-widest font-semibold">
+                    All-Inclusive Starting From
                   </span>
-                  <p className="text-4xl font-bold text-safari-green">
+                  <p className="text-4xl font-extrabold text-safari-green mt-1">
                     ${safari.price.toLocaleString()}
                   </p>
-                  <span className="text-sm text-earth-light/50">
-                    per person
+                  <span className="text-xs text-earth-light/60">
+                    USD per person (double occupancy)
                   </span>
                 </div>
-                <div className="space-y-3 text-sm mb-6">
-                  <div className="flex items-center justify-between py-2 border-b border-sand">
+
+                <div className="space-y-3 py-6 text-sm border-b border-sand/60">
+                  <div className="flex items-center justify-between">
                     <span className="text-earth-light/60">Duration</span>
-                    <span className="font-medium text-earth">
-                      {safari.duration}
-                    </span>
+                    <span className="font-bold text-earth">{safari.duration}</span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-sand">
+                  <div className="flex items-center justify-between">
                     <span className="text-earth-light/60">Group Size</span>
-                    <span className="font-medium text-earth">
-                      {safari.groupSize}
-                    </span>
+                    <span className="font-bold text-earth">{safari.groupSize} travelers</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-earth-light/60">Vehicle</span>
+                    <span className="font-bold text-earth">Custom 4x4 Cruiser</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-earth-light/60">Medical Evacuation</span>
+                    <span className="font-bold text-emerald-700">AMREF Flying Doctors Included</span>
                   </div>
                 </div>
-                <Link
-                  href={`/contact?safari=${encodeURIComponent(safari.title)}`}
-                  className="block w-full text-center px-6 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-full transition-colors"
-                >
-                  Book This Safari
-                </Link>
-                <p className="text-xs text-earth-light/40 text-center mt-3">
-                  Free cancellation up to 30 days before departure
-                </p>
+
+                <div className="pt-6 space-y-3">
+                  <Link
+                    href={`/contact?safari=${encodeURIComponent(safari.title)}`}
+                    className="block w-full text-center px-6 py-4 bg-accent hover:bg-accent-dark text-stone-950 font-bold rounded-full transition-all shadow-md hover:shadow-lg text-sm"
+                  >
+                    Request Custom Quote & Dates &rarr;
+                  </Link>
+                  <a
+                    href={`https://wa.me/254718832191?text=${encodeURIComponent(
+                      `Hello! I'm interested in booking the ${safari.title} safari.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center px-6 py-3.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-full transition-all text-xs"
+                  >
+                    💬 WhatsApp Us About This Trip
+                  </a>
+                  <p className="text-[11px] text-earth-light/50 text-center mt-2">
+                    Free date change up to 30 days prior • Instant confirmation
+                  </p>
+                </div>
               </div>
             </div>
           </div>

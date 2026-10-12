@@ -3,14 +3,14 @@
 :root {
   --background: #faf8f5;
   --foreground: #1a1a1a;
-  --accent: #c8a44e;
-  --accent-dark: #b08d30;
-  --accent-light: #f5e6c3;
-  --earth: #5c4033;
-  --earth-light: #8b6f47;
+  --accent: #d4a340;
+  --accent-dark: #b88528;
+  --accent-light: #faeccc;
+  --earth: #3b281f;
+  --earth-light: #6e4e37;
   --sand: #e8dcc8;
-  --safari-green: #2d5016;
-  --safari-green-light: #4a7c28;
+  --safari-green: #234415;
+  --safari-green-light: #3e6e26;
 }
 
 @theme inline {
@@ -32,8 +32,77 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
 }
+
+/* Custom Keyframe Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 163, 64, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(212, 163, 64, 0.55);
+  }
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-kenburns {
+  animation: kenburns 30s ease-in-out infinite;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-dark {
+  background: rgba(43, 29, 21, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+

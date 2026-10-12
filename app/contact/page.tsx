@@ -21,17 +21,27 @@ export default function ContactPage() {
 
   return (
     <div>
-      <section className="bg-earth text-white py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="text-accent text-sm font-semibold uppercase tracking-widest">
-            Get in Touch
+      <section className="relative min-h-[42vh] flex flex-col justify-end bg-stone-950 text-white overflow-hidden py-16 sm:py-24">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=2000&q=80"
+            alt="Plan Your Kenya Safari"
+            className="w-full h-full object-cover opacity-45 scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-black/30" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <span className="inline-block bg-accent/20 border border-accent/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+            ✨ Tailored Safari Planning
           </span>
-          <h1 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold">
-            Book Your Safari
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+            Plan Your Kenyan Safari
           </h1>
-          <p className="mt-4 text-white/70 text-lg max-w-2xl">
-            Ready to explore Kenya? Fill out the form below and our team will
-            get back to you within 24 hours with a personalized itinerary.
+          <p className="mt-4 text-stone-200 text-base sm:text-lg max-w-2xl leading-relaxed">
+            Ready for your adventure in the wild? Tell us your preferred dates,
+            destinations, and travel group size. Our local safari experts will
+            design a custom itinerary within 24 hours.
           </p>
         </div>
       </section>
@@ -338,12 +348,12 @@ export default function ContactPage() {
                   respond within minutes during business hours.
                 </p>
                 <a
-                  href="https://wa.me/254700123456"
+                  href="https://wa.me/254718832191"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center px-6 py-3 bg-safari-green hover:bg-safari-green-light text-white font-semibold rounded-full transition-colors text-sm"
+                  className="block w-full text-center px-6 py-3.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-full transition-colors text-sm shadow-md"
                 >
-                  Chat on WhatsApp
+                  💬 Chat on WhatsApp (+254 718832191)
                 </a>
               </div>
             </div>
